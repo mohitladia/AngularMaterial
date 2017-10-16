@@ -1,0 +1,73 @@
+//Directives for list values
+
+import {Component} from '@angular/core';
+
+ @ Component({
+    selector:'courses',
+    template:`
+        <h2>{{getTitle()}}</h2> 
+        <ul> 
+            <li *ngFor="let course of courses">
+                {{course}}
+            </li>
+        </ul>`
+ })
+ export class CourseComponent{
+     title = "List of Courses";
+     getTitle(){
+         return this.title;
+     }
+     courses =["course1","course2","course3"]
+ }
+ 
+ //service
+ 
+  import {Component} from '@angular/core';
+import { CoursesService } from './courses.service';
+
+ @ Component({
+    selector:'courses',
+    template:`
+        <h2>{{getTitle()}}</h2> 
+	
+        <ul> 
+            <li *ngFor="let course of courses">
+                {{course}}
+            </li>
+        </ul>`
+ })
+ export class CourseComponent{
+     title = "List of Courses";
+     getTitle(){
+         return this.title;
+     }
+    courses;
+    constructor(){
+        let service = new CoursesService();
+        this.courses=  service.getCourses();
+    }
+ }
+ export class CoursesService{ 
+    getCourses(){
+        return ["course1","course2","course3"];
+    }
+}
+//Dependency injection
+constructor(service: CoursesService){
+        //let service = new CoursesService();
+        this.courses=  service.getCourses();
+    }
+	
+	In the module.ts ,add CourseService in the provider section
+	
+	//Property Binding
+	1.It is a one way binding from component to dom ,the property of a dom element to property of component
+	
+	//Import bootstrap in syles.css
+	@import "~bootstrap/dist/css/bootstrap.css";
+	
+	 <button class="btn btn-primary">Save</button>
+	 
+	 <input (keyup.enter)="onKeyUp($event)"/>
+	 
+	 //ngFor is a directive to manipulate dom
